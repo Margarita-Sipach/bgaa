@@ -43,6 +43,6 @@ export const Main = () => {
   const [columns, setColumns] = useState([...initColumns, teacherColumn])
 
 
-    return <Table dataSource={dataSource} columns={columns} scroll={{ x: 'fit-content' }}/>;
+    return <Table dataSource={dataSource} columns={columns} scroll={{ x: 'fit-content' }} pagination={false}/>;
 
 }
