@@ -1,0 +1,41 @@
+.wrapper{
+    max-width: 1400px;
+    width: 100%;
+    margin: auto;
+}
+
+
+#root {
+    *{
+        @media (max-width: 800px) {
+            font-size: 12px;
+        }
+    }
+    
+    .ant-table-cell{
+        @media (max-width: 800px) {
+            padding: 10px;
+        }
+    }
+    
+    h1{
+        color: darkblue;
+        margin-bottom: 20px;
+        @media (max-width: 800px) {
+            font-size: 20px;
+        }
+    }
+
+    .ant-descriptions-item-label{
+        color: darkblue;
+    }
+
+    .ant-table-thead .ant-table-cell{
+        color: darkblue;
+        background: white;
+    }
+
+    .ant-table-tbody .ant-table-cell{
+        background: azure;
+    }
+}
