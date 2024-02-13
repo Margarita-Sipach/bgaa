@@ -1,15 +1,20 @@
 import { Descriptions, DescriptionsProps } from "antd";
 import { getInfo } from "../../lib/axios";
 import { getItem } from "./lib/fn";
+import { useTypedSelector } from "../../redux/hooks";
 
-const {data} = getInfo();
-const {groupName, course, studentsNumber, semestr} = data[0]
+ export const About: React.FC = () => {
+ const {info, isLoading, error} = useTypedSelector(state => state.info)
 
-const items: DescriptionsProps['items'] = [
+ if(isLoading || !info.data?.[0]) return <>Loading</>
+
+ const {groupName, course, studentsNumber, semestr} = info.data?.[0]
+
+ const items: DescriptionsProps['items'] = [
   getItem('groupName', 'Группа', groupName),
   getItem('studentsNumber', 'Количество курсантов', studentsNumber),
   getItem('course', 'Курс', course),
   getItem('semestr', 'Семестр', semestr)
   ];
-  
- export const About: React.FC = () => <Descriptions items={items} column={{xs: 1, sm: 2, xl: 2, xxl: 2}} />;
+ return <Descriptions items={items} column={{xs: 1, sm: 2, xl: 2, xxl: 2}} />;
+ }

@@ -1,7 +1,7 @@
 import { Button, Select } from "antd";
 import cls from '../style.module.scss'
 import { DownSquareOutlined } from "@ant-design/icons";
-import { TeacherI } from "./type";
+import { TeacherI } from "../../../redux/types";
 
 interface TeacherSelectProps{
     teachers: TeacherI[], 

@@ -4,7 +4,7 @@ export const getCell = (
     key: string, 
     lesson: string, 
     hours: string, 
-    teachers: TeacherI[]
+    teachers: TeacherI[] | number
 ) => {
     return {
         key,
