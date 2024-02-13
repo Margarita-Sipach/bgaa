@@ -20,4 +20,19 @@ export const TeacherSelect = ({teachers, hours, rowNumber}: TeacherSelectProps) 
     </div>
 )
 
-export const FillButton = () => <Button icon={<DownSquareOutlined />} type="primary"/>
+const handleClick = (e: any) => {
+    const card = e.target.closest(".ant-table")
+    const {cellIndex: startCellIndex} = e.target.closest(".ant-table-cell")
+    const [startCell, ...cells] = [...card.querySelectorAll('.ant-table-tbody .ant-table-cell')].filter(({cellIndex}: any) => cellIndex === startCellIndex)
+                               
+    cells.forEach((cell: any) => {
+        const input = cell.querySelector('input')
+        const item = cell.querySelector('.ant-select-selection-item')
+        if(input && !input.disabled) item.textContent = startCell.querySelector('.ant-select-selection-item')?.textContent
+    })
+}
+
+export const FillButton = () => <Button icon={<DownSquareOutlined />} 
+                                        type="primary" 
+                                        onClick={handleClick}
+/>

@@ -1,4 +1,5 @@
-import { CellI, TeacherI } from "./type"
+import { TeacherI } from "../../../redux/types"
+import { CellI } from "./type"
 
 export const getCell = (
     key: string, 

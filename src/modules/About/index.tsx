@@ -3,12 +3,8 @@ import { getInfo } from "../../lib/axios";
 import { getItem } from "./lib/fn";
 import { useTypedSelector } from "../../redux/hooks";
 
- export const About: React.FC = () => {
- const {info, isLoading, error} = useTypedSelector(state => state.info)
-
- if(isLoading || !info.data?.[0]) return <>Loading</>
-
- const {groupName, course, studentsNumber, semestr} = info.data?.[0]
+ export const About: React.FC<any> = ({data}: any) => {
+ const {groupName, course, studentsNumber, semestr} = data
 
  const items: DescriptionsProps['items'] = [
   getItem('groupName', 'Группа', groupName),

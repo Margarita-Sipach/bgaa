@@ -15,22 +15,19 @@ export enum ColumnTypes{
 
 
   
-export const Main = () => {
- const {info, isLoading, error} = useTypedSelector(state => state.info)
+export const Main = ({data, teachers}: any) => {
  const [columnType, setColumnType] = useState(ColumnTypes.TEACHER)
 
- const {data, teachers} = info
-
 const dataSource = [
-  getCell('lecturesHours', 'Лекции', data?.[0].lecturesHours, teachers),
-  getCell('laboratoryHours', 'Лабораторные работы', data?.[0].laboratoryHours, teachers),
-  getCell('practicHours', 'Практические', data?.[0].practicHours, teachers),
-  getCell('seminarHours', 'Суминарские', data?.[0].seminarHours, teachers),
+  getCell('lecturesHours', 'Лекции', data?.lecturesHours, teachers),
+  getCell('laboratoryHours', 'Лабораторные работы', data?.laboratoryHours, teachers),
+  getCell('practicHours', 'Практические', data?.practicHours, teachers),
+  getCell('seminarHours', 'Суминарские', data?.seminarHours, teachers),
 ];
 
-  data?.[0].offset && dataSource.push(getCell('offset', 'Зачет', data?.[0].offset, teachers))
-  data?.[0].exam && dataSource.push(getCell('exam', 'Экзамен', data?.[0].exam, teachers))
-  dataSource.push(getCell('amount', 'Количество человек', '', data?.[0].studentsNumber / (columnType === ColumnTypes.TEACHER ? 1 : 2)))
+  data?.offset && dataSource.push(getCell('offset', 'Зачет', data?.offset, teachers))
+  data?.exam && dataSource.push(getCell('exam', 'Экзамен', data?.exam, teachers))
+  dataSource.push(getCell('amount', 'Количество человек', '', data?.studentsNumber / (columnType === ColumnTypes.TEACHER ? 1 : 2)))
   dataSource.push(getCell('info', 'Примечание (для составления расписания)', '', 0))
 
   const initColumns = [
@@ -59,7 +56,6 @@ const dataSource = [
       }, [columnType])
 
       const [columns, setColumns] = useState<any>([...initColumns, teacherColumn])
-      if(isLoading || !data) return <>Loading</>
 
-    return <Table dataSource={dataSource} columns={columns} scroll={{ x: 'fit-content' }} pagination={false}  onChange={(x) => console.log(x)}/>;
+    return <Table dataSource={dataSource} columns={columns} scroll={{ x: 'fit-content' }} pagination={false} />;
 }
