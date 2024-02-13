@@ -15,6 +15,8 @@ function App() {
     getInfo()
   }, [])
 
+  if(isLoading) return <>Loading</>
+
   return <div className='wrapper'>{
     data?.map((i: any) => (
         <div className='wrapper' key={i.uniqueId}>
@@ -24,7 +26,7 @@ function App() {
       </div>
   ))
     }
-  <Button onClick={addInfo} className='save-button'>Сохранить</Button>
+  <Button onClick={(e) => addInfo(e, info)} className='save-button'>Сохранить</Button>
   </div>
 }
 

@@ -1,12 +1,10 @@
-import { Table } from "antd";
-import { getInfo } from "../../lib/axios";
+import { Input, Table } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useEffect, useState } from "react";
 import { getCell, getColumn } from "./lib/fn";
 import { TeacherSelect } from "./lib/ui";
 import { CellI } from "./lib/type";
 import { DeleteFilled, PlusOutlined } from "@ant-design/icons";
-import { useTypedSelector } from "../../redux/hooks";
 
 export enum ColumnTypes{
   TEACHER = 'TEACHER',
@@ -19,16 +17,16 @@ export const Main = ({data, teachers}: any) => {
  const [columnType, setColumnType] = useState(ColumnTypes.TEACHER)
 
 const dataSource = [
-  getCell('lecturesHours', 'Лекции', data?.lecturesHours, teachers),
-  getCell('laboratoryHours', 'Лабораторные работы', data?.laboratoryHours, teachers),
-  getCell('practicHours', 'Практические', data?.practicHours, teachers),
-  getCell('seminarHours', 'Суминарские', data?.seminarHours, teachers),
+  getCell('lectureTeacher', 'Лекции', data?.lecturesHours, teachers),
+  getCell('laboratoryTeacher', 'Лабораторные работы', data?.laboratoryHours, teachers),
+  getCell('practiceTeacher', 'Практические', data?.practicHours, teachers),
+  getCell('seminarTeacher', 'Суминарские', data?.seminarHours, teachers),
 ];
 
-  data?.offset && dataSource.push(getCell('offset', 'Зачет', data?.offset, teachers))
-  data?.exam && dataSource.push(getCell('exam', 'Экзамен', data?.exam, teachers))
-  dataSource.push(getCell('amount', 'Количество человек', '', data?.studentsNumber / (columnType === ColumnTypes.TEACHER ? 1 : 2)))
-  dataSource.push(getCell('info', 'Примечание (для составления расписания)', '', 0))
+  data?.offset && dataSource.push(getCell('offsetTeacher', 'Зачет', data?.offset, teachers))
+  data?.exam && dataSource.push(getCell('examTeacher', 'Экзамен', data?.exam, teachers))
+  dataSource.push(getCell('countStudents', 'Количество человек', '', data?.studentsNumber / (columnType === ColumnTypes.TEACHER ? 1 : 2)))
+  dataSource.push(getCell('additionalInfo', 'Примечание (для составления расписания)', '', ''))
 
   const initColumns = [
     getColumn('lesson', 'Занятие'),
@@ -37,7 +35,7 @@ const dataSource = [
 
       const getTeacherCell = (_: any, {teachers, hours}: CellI, i: number) => {
         if(!teachers) return <TextArea/>
-        if(typeof teachers === 'number') return teachers
+        if(typeof teachers === 'number') return <Input defaultValue={teachers}/>
         return <TeacherSelect teachers={teachers} hours={hours} rowNumber={i} />
       }
 
