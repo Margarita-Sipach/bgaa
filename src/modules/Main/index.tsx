@@ -3,8 +3,6 @@ import TextArea from "antd/es/input/TextArea";
 import { useEffect, useState } from "react";
 import { getCell, getColumn } from "./lib/fn";
 import { Group1, Group2, Teacher, TeacherSelect } from "./lib/ui";
-import { CellI } from "./lib/type";
-import { DeleteFilled, PlusOutlined } from "@ant-design/icons";
 
 export enum ColumnTypes{
   TEACHER = 'TEACHER',
