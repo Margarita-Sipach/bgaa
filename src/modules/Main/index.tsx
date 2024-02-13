@@ -10,8 +10,6 @@ export enum ColumnTypes{
   TEACHER = 'TEACHER',
   GROUP = 'GROUP'
 }
-
-
   
 export const Main = ({data, teachers}: any) => {
  const [columnType, setColumnType] = useState(ColumnTypes.TEACHER)
@@ -29,20 +27,20 @@ const dataSource = [
   dataSource.push(getCell('additionalInfo', 'Примечание (для составления расписания)', '', ''))
 
   const initColumns = [
-    getColumn('lesson', 'Занятие'),
-    getColumn('hours', 'Часы')
+    getColumn('lesson', <>Занятие</>),
+    getColumn('hours', <>Часы</>)
   ];
 
       const getTeacherCell = (_: any, {teachers, hours}: CellI, i: number) => {
         if(!teachers) return <TextArea/>
         if(typeof teachers === 'number') return <Input defaultValue={teachers}/>
-        return <TeacherSelect teachers={teachers} hours={hours} rowNumber={i} />
+        return <TeacherSelect teachers={teachers as any} hours={hours} rowNumber={i} />
       }
 
       const changeColumnType = () => setColumnType(columnType === ColumnTypes.TEACHER ? ColumnTypes.GROUP : ColumnTypes.TEACHER)
 
       const groupColumns = [
-        getColumn('group1', 'Подгруппа 1', () => {}, getTeacherCell), 
+        getColumn('group1', <>Подгруппа 1</>, () => {}, getTeacherCell), 
         getColumn('group2', <>Подгруппа 2 <DeleteFilled /></>, changeColumnType, getTeacherCell)
       ]
 

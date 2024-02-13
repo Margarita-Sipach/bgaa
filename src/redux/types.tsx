@@ -35,13 +35,13 @@ interface InfoI{
 }
 
 export interface StateI{
-    info: any,
+    info?: InfoI,
     error: string,
     isLoading: boolean
 }
 
 interface ActionLoaingI{
-    payload: '',
+    payload: undefined,
     type: ActionTypes.ADD_INFO | ActionTypes.GET_INFO
 }
 
@@ -51,7 +51,7 @@ interface ActionErrorI{
 }
 
 interface ActionSucecessI{
-    payload: StateI,
+    payload: InfoI,
     type: ActionTypes.ADD_INFO_SUCCESS | ActionTypes.GET_INFO_SUCCESS
 }
 

@@ -1,7 +1,5 @@
 import { Descriptions, DescriptionsProps } from "antd";
-import { getInfo } from "../../lib/axios";
 import { getItem } from "./lib/fn";
-import { useTypedSelector } from "../../redux/hooks";
 
  export const About: React.FC<any> = ({data}: any) => {
  const {groupName, course, studentsNumber, semestr} = data

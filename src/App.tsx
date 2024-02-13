@@ -8,7 +8,7 @@ import { Button } from 'antd'
 function App() {
   const {getInfo, addInfo} = useActions()
   const {info, isLoading, error} = useTypedSelector(state => state.info)
-  const {data, teachers} = info
+  const {data, teachers} = info!
 
 
   useEffect(() => {
@@ -16,6 +16,7 @@ function App() {
   }, [])
 
   if(isLoading) return <>Loading</>
+  if(error) return <>{error}</>
 
   return <div className='wrapper'>{
     data?.map((i: any) => (
