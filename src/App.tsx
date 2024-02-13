@@ -15,14 +15,17 @@ function App() {
     getInfo()
   }, [])
 
-  return data?.map((i: any) => (
+  return <div className='wrapper'>{
+    data?.map((i: any) => (
         <div className='wrapper' key={i.uniqueId}>
         <Header />
         <About data={i} />
         <Main data={i} teachers={teachers}/>
-        <Button onClick={addInfo} className='save-button'>Сохранить</Button>
       </div>
   ))
+    }
+  <Button onClick={addInfo} className='save-button'>Сохранить</Button>
+  </div>
 }
 
 export default App
