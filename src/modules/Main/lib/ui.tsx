@@ -1,6 +1,6 @@
 import { Button, Select } from "antd";
 import cls from '../style.module.scss'
-import { DownSquareOutlined } from "@ant-design/icons";
+import { DeleteFilled, DownSquareOutlined, PlusOutlined } from "@ant-design/icons";
 import { TeacherI } from "../../../redux/types";
 
 interface TeacherSelectProps{
@@ -36,3 +36,7 @@ export const FillButton = () => <Button icon={<DownSquareOutlined />}
                                         type="primary" 
                                         onClick={handleClick}
 />
+
+export const Group1 = () => <>Подгруппа 1</>
+export const Group2 = () => <>Подгруппа 2 <DeleteFilled /></>
+export const Teacher = () => <>Преподаватель <PlusOutlined /></>
